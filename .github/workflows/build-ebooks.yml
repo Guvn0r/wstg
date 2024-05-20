@@ -10,9 +10,9 @@ on:
         description: 'Version?'
         required: true
         default: '4.x'
+
 jobs:
   build:
-    if: github.actor == 'kingthorin' || github.actor == 'ThunderSon' || github.actor == 'rejahrehim' || github.actor == 'victoriadrake'
     name: Build
     runs-on: ubuntu-latest
     env:
@@ -42,13 +42,13 @@ jobs:
     - name: Run Push Build
       if: github.event_name == 'push'
       run: |
-        npm run-script  pdfgen -- ${{ steps.vars.outputs.tag }}
-        npm run-script  epubgen -- ${{ steps.vars.outputs.tag }}
+        npm run-script pdfgen -- ${{ steps.vars.outputs.tag }}
+        npm run-script epubgen -- ${{ steps.vars.outputs.tag }}
     - name: Run Workflow Build
       if: github.event_name == 'workflow_dispatch'
       run: |
-        npm run-script  pdfgen -- ${{ github.event.inputs.version }}
-        npm run-script  epubgen -- ${{ github.event.inputs.version }}
+        npm run-script pdfgen -- ${{ github.event.inputs.version }}
+        npm run-script epubgen -- ${{ github.event.inputs.version }}
     - name: Create Release
       if: github.event_name == 'push'
       id: create_release

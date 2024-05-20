@@ -71,3 +71,4 @@ jobs:
         path: |
           ./build/wstg-${{ github.event.inputs.version }}.pdf
           ./build/wstg-${{ github.event.inputs.version }}.epub
+
